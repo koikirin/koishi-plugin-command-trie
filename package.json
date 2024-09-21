@@ -1,22 +1,32 @@
 {
   "name": "koishi-plugin-command-trie",
   "description": "Execute command without seperator",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "dist"
   ],
+  "author": "Hieuzest <girkirin@hotmail.com>",
   "license": "MIT",
-  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koikirin/koishi-plugin-command-trie.git"
+  },
+  "homepage": "https://github.com/koikirin/koishi-plugin-command-trie",
   "keywords": [
     "chatbot",
     "koishi",
     "plugin"
   ],
-  "devDependencies": {},
   "peerDependencies": {
-    "koishi": "^4.17.10"
+    "koishi": "^4.17.1"
+  },
+  "koishi": {
+    "description": {
+      "en": "Execute command without seperator",
+      "zh": "省略指令后的空格"
+    }
   }
 }
