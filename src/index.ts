@@ -31,7 +31,6 @@ export function apply(ctx: Context, config: Config) {
     if (!command) return
     await Promise.resolve()
     const aliases = [...Object.keys(command._aliases), ...Object.keys(command.config.aliases ?? {})]
-    console.log(command.name, aliases)
     for (const name of aliases) {
       trie.insert(name)
     }
@@ -43,7 +42,7 @@ export function apply(ctx: Context, config: Config) {
   ctx.on('command-updated', applyCommand)
 
   ctx.middleware(async (session, next) => {
-    const key = trie.prefixes(Command.normalize(session.stripped.content))
+    const key = trie.prefixes(Command.normalize(session.stripped.content?.split(' ')[0] ?? ''))
       .filter((key) => ctx.$commander.get(key)?.config.ignoreSeperator ?? config.ignoreSeperator)
       ?.[0]
     if (!key) return next()
