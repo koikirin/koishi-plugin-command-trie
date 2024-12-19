@@ -43,7 +43,7 @@ export function apply(ctx: Context, config: Config) {
 
   ctx.middleware(async (session, next) => {
     const key = trie.prefixes(Command.normalize(session.stripped.content?.split(' ')[0] ?? ''))
-      .filter((key) => ctx.$commander.get(key)?.config.ignoreSeperator ?? config.ignoreSeperator)
+      .filter((key) => ctx.$commander.get(key) && (ctx.$commander.get(key).config.ignoreSeperator ?? config.ignoreSeperator))
       ?.[0]
     if (!key) return next()
     await session.execute([session.stripped.content.slice(0, key.length), session.stripped.content.slice(key.length)].join(' '), next)
